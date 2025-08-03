@@ -5,18 +5,36 @@
     <link rel="stylesheet" href="style.css" />
   </head>
   <body>
-    <div class="js-timer-display">00:00:00</div>
-    <button class="main-buttons" onclick="startTimer()">Start</button>
-    <button class="main-buttons" onclick="pauseTimer()">Pause</button>
-    <button class="main-buttons" onclick="resetTimer()">Reset</button>
-    <button class="main-buttons"
-      onclick=""
-    >Mode</button>
-    <div class="modal"> Set Timer
-      <input class="timer-input" type="number">
-      <button onclick="timer()" class="timer-start"> Start </button>
-      <button class="timer-cancel"> Cancle </button>
+    <div class="main-container">
+      <div class="timer-display">
+        <span class="timer-text">timer</span>
+        <div class="js-timer-display">00:00:00</div>
+      </div>
+      <div class="controls-container">
+        <div class="button-wrapper">
+          <button class="main-buttons" onclick="startTimer()">Start</button>
+        </div>
+        <div class="button-wrapper">
+          <button class="main-buttons" onclick="pauseTimer()">Pause</button>
+        </div>
+        <div class="button-wrapper">
+          <button class="main-buttons" onclick="resetTimer()">Reset</button>
+        </div>
+        <div class="button-wrapper">
+          <button class="main-buttons" onclick="showModal()">Countdown</button>
+        </div>
+      </div>
     </div>
+
+    <div class="modal">
+      <div>
+        Set Timer
+        <input class="timer-input" type="number" />
+        <button onclick="timer()" class="timer-start">Start</button>
+        <button onclick="hideModal()" class="timer-cancel">Cancel</button>
+      </div>
+    </div>
+
     <script src="app.js"></script>
   </body>
 </html>

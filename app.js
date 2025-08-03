@@ -44,16 +44,39 @@ function resetTimer() {
   displayTimer();
 }
 
+// Modal control functions
+function showModal() {
+  const modal = document.querySelector(".modal");
+  modal.style.display = "flex";
+  modal.style.justifyContent = "center";
+  modal.style.alignItems = "center";
+  modal.style.pointerEvents = "auto";
+}
+
+function hideModal() {
+  const modal = document.querySelector(".modal");
+  modal.style.display = "none";
+  modal.style.pointerEvents = "none";
+}
+
 function timer() {
-  isTimerMode = true;
-  const timerInput = document.querySelector('.timer-input').value;
-  totalSeconds = timerInput*60;
-  intervalId = setInterval(timerCountDown, 1000);
+  const timerInput = document.querySelector(".timer-input").value;
+  if (timerInput && timerInput > 0) {
+    isTimerMode = true;
+    totalSeconds = timerInput * 60;
+    displayTimer();
+    hideModal();
+    startTimer();
+  } else {
+    alert("Please enter a valid time in minutes!");
+  }
 }
 
 function timerCountDown() {
   if (totalSeconds == 0) {
     clearInterval(intervalId);
+    isRunning = false;
+    isTimerMode = false;
     return;
   }
   totalSeconds--;
