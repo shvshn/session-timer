@@ -1,11 +1,14 @@
 let totalSeconds = 0;
 let intervalId = null;
 let isRunning = false;
+let isTimerMode = false;
 
 function startTimer() {
-  if (!isRunning) {
+  if (!isRunning && !isTimerMode) {
     intervalId = setInterval(updateTimer, 1000);
     isRunning = true;
+  } else if (!isRunning && isTimerMode) {
+    intervalId = setInterval(timerCountDown, 1000);
   }
 }
 
@@ -38,5 +41,21 @@ function resetTimer() {
   clearInterval(intervalId);
   isRunning = false;
   totalSeconds = 0;
+  displayTimer();
+}
+
+function timer() {
+  isTimerMode = true;
+  const timerInput = document.querySelector('.timer-input').value;
+  totalSeconds = timerInput*60;
+  intervalId = setInterval(timerCountDown, 1000);
+}
+
+function timerCountDown() {
+  if (totalSeconds == 0) {
+    clearInterval(intervalId);
+    return;
+  }
+  totalSeconds--;
   displayTimer();
 }

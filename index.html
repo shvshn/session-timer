@@ -9,7 +9,14 @@
     <button class="main-buttons" onclick="startTimer()">Start</button>
     <button class="main-buttons" onclick="pauseTimer()">Pause</button>
     <button class="main-buttons" onclick="resetTimer()">Reset</button>
-    <button class="main-buttons">Mode</button>
+    <button class="main-buttons"
+      onclick=""
+    >Mode</button>
+    <div class="modal"> Set Timer
+      <input class="timer-input" type="number">
+      <button onclick="timer()" class="timer-start"> Start </button>
+      <button class="timer-cancel"> Cancle </button>
+    </div>
     <script src="app.js"></script>
   </body>
 </html>
