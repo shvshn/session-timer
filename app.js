@@ -64,6 +64,8 @@ function timer() {
   } else {
     alert("Please enter a valid time in minutes!");
   }
+  document.querySelector("#timer-input").value = "";
+
 }
 
 function timerCountDown() {
