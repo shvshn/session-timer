@@ -8,14 +8,18 @@
     <div class="main-container">
       <div class="timer-display">
         <span class="timer-text">timer</span>
-        <div class="js-timer-display">00:00:00</div>
+        <div class="js-timer-display">
+          00<span class="subscript-text"><sub>h</sub></span
+          >:00<span class="subscript-text"><sub>m</sub></span
+          >:00<span class="subscript-text"><sub>s</sub></span>
+        </div>
       </div>
+
       <div class="controls-container">
         <div class="button-wrapper">
-          <button class="main-buttons" onclick="startTimer()">Start</button>
-        </div>
-        <div class="button-wrapper">
-          <button class="main-buttons" onclick="pauseTimer()">Pause</button>
+          <button class="main-buttons start-btn" onclick="startTimer()">
+            Start
+          </button>
         </div>
         <div class="button-wrapper">
           <button class="main-buttons" onclick="resetTimer()">Reset</button>
@@ -27,11 +31,32 @@
     </div>
 
     <div class="modal">
-      <div>
-        Set Timer
-        <input class="timer-input" type="number" />
-        <button onclick="timer()" class="timer-start">Start</button>
-        <button onclick="hideModal()" class="timer-cancel">Cancel</button>
+      <div class="modal-overlay">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2>Set Countdown Timer</h2>
+            <button class="modal-close" onclick="hideModal()">×</button>
+          </div>
+
+          <div class="modal-body">
+            <div class="input-group">
+              <label for="timer-input">Minutes:</label>
+              <input
+                id="timer-input"
+                class="timer-input"
+                type="number"
+                placeholder="Enter minutes"
+                min="1"
+                max="1440"
+              />
+            </div>
+
+            <div class="modal-buttons">
+              <button onclick="timer()" class="timer-start">Start Timer</button>
+              <button onclick="hideModal()" class="timer-cancel">Cancel</button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
 

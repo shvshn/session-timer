@@ -7,8 +7,15 @@ function startTimer() {
   if (!isRunning && !isTimerMode) {
     intervalId = setInterval(updateTimer, 1000);
     isRunning = true;
+    document.querySelector(".start-btn").innerText = "Pause";
   } else if (!isRunning && isTimerMode) {
     intervalId = setInterval(timerCountDown, 1000);
+    isRunning = true;
+    document.querySelector(".start-btn").innerText = "Pause";
+  } else if (isRunning) {
+    clearInterval(intervalId);
+    isRunning = false;
+    document.querySelector(".start-btn").innerText = "Start";
   }
 }
 
@@ -26,15 +33,8 @@ function displayTimer() {
     .padStart(2, "0");
   let seconds = (totalSeconds % 60).toString().padStart(2, "0");
 
-  document.querySelector(
-    ".js-timer-display"
-  ).innerHTML = `<div>${hours}:${mins}:${seconds}</div>`;
-}
-
-function pauseTimer() {
-  clearInterval(intervalId);
-  isRunning = false;
-  // displayTimer();
+  const displayElement = document.querySelector(".js-timer-display");
+  displayElement.innerHTML = `${hours}<span class="subscript-text"><sub>h</sub></span>:${mins}<span class="subscript-text"><sub>m</sub></span>:${seconds}<span class="subscript-text"><sub>s</sub></span>`;
 }
 
 function resetTimer() {
@@ -42,25 +42,19 @@ function resetTimer() {
   isRunning = false;
   totalSeconds = 0;
   displayTimer();
+  document.querySelector(".start-btn").innerText = "Start";
 }
 
-// Modal control functions
 function showModal() {
-  const modal = document.querySelector(".modal");
-  modal.style.display = "flex";
-  modal.style.justifyContent = "center";
-  modal.style.alignItems = "center";
-  modal.style.pointerEvents = "auto";
+  document.querySelector(".modal").style.display = "flex";
 }
 
 function hideModal() {
-  const modal = document.querySelector(".modal");
-  modal.style.display = "none";
-  modal.style.pointerEvents = "none";
+  document.querySelector(".modal").style.display = "none";
 }
 
 function timer() {
-  const timerInput = document.querySelector(".timer-input").value;
+  const timerInput = document.querySelector("#timer-input").value;
   if (timerInput && timerInput > 0) {
     isTimerMode = true;
     totalSeconds = timerInput * 60;
